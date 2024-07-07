@@ -1,0 +1,13 @@
+<div *ngIf="product$ | async as product">
+    <h2>Product Details</h2>
+    <h3>{{product.name}}</h3>
+    <span>{{product.price | currency:'EUR'}}</span>
+    <p *ngIf="authService.isLoggedIn && authService.userRole === 'admin'">
+      <input placeholder="New price" #price>
+      <button (click)="changePrice(product, price.valueAsNumber)">Change</button>
+    </p>
+    <p>
+      <button *ngIf="authService.isLoggedIn && authService.userRole === 'user'" (click)="buy()">Buy Now</button>
+      <button class="delete" (click)="removeProduct(product)" *ngIf="authService.isLoggedIn && authService.userRole === 'admin'">Delete</button>
+    </p>
+  </div>
