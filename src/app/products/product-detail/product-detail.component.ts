@@ -1,8 +1,9 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation, ChangeDetectionStrategy, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Product } from '../../product';
-import { Observable } from 'rxjs';
+import { Observable, switchMap } from 'rxjs';
 import { ProductsService } from '../products.service';
 import { AuthService } from '../../auth/auth.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -21,12 +22,16 @@ export class ProductDetailComponent implements OnInit, OnChanges {
   product$: Observable<Product> | undefined;
   @Output() deleted = new EventEmitter();
 
-  constructor(private productService: ProductsService, public authService: AuthService) {
+  constructor(private productService: ProductsService, public authService: AuthService, private activatedRoute: ActivatedRoute) {
     console.log(`Name is ${this.name} in the constructor`);
   }
 
   ngOnInit(): void {
-    console.log(`Name is ${this.name} in the ngOnInit`); // 'Name is ${this.name} in the ngOnInit');
+    this.product$ = this.activatedRoute.paramMap.pipe(
+      switchMap(params => {
+        return this.productService.getProduct(Number(params.get('id')))
+      })
+    )
 }
 
 ngOnChanges(changes: SimpleChanges): void {
