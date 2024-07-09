@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ProductsModule } from './products/products.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BrowserModule,
     ProductsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

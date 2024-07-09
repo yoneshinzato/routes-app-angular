@@ -22,16 +22,21 @@ export class ProductDetailComponent implements OnInit, OnChanges {
   product$: Observable<Product> | undefined;
   @Output() deleted = new EventEmitter();
 
-  constructor(private productService: ProductsService, public authService: AuthService, private activatedRoute: ActivatedRoute) {
+  constructor(private productService: ProductsService, public authService: AuthService, private activatedRoute: ActivatedRoute,) {
     console.log(`Name is ${this.name} in the constructor`);
   }
 
   ngOnInit(): void {
-    this.product$ = this.activatedRoute.paramMap.pipe(
-      switchMap(params => {
-        return this.productService.getProduct(Number(params.get('id')))
-      })
-    )
+    // this.product$ = this.activatedRoute.paramMap.pipe(
+    //   switchMap(params => {
+    //     return this.productService.getProduct(Number(params.get('id')))
+    //   })
+    // )
+    const id = this.activatedRoute.snapshot.params['id'];
+  this.product$ = this.productService.getProduct(id)
+  // this.activatedRoute.queryParamMap.subscribe(params => {
+  //   console.log(params.get("sortOrder"))
+  // })
 }
 
 ngOnChanges(changes: SimpleChanges): void {
