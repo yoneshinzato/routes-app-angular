@@ -1,6 +1,6 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation, ChangeDetectionStrategy, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { Product } from '../../product';
-import { Observable, switchMap } from 'rxjs';
+import { Observable, switchMap, of } from 'rxjs';
 import { ProductsService } from '../products.service';
 import { AuthService } from '../../auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
@@ -27,20 +27,12 @@ export class ProductDetailComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    // this.product$ = this.activatedRoute.paramMap.pipe(
-    //   switchMap(params => {
-    //     return this.productService.getProduct(Number(params.get('id')))
-    //   })
-    // )
-    const id = this.activatedRoute.snapshot.params['id'];
-  this.product$ = this.productService.getProduct(id)
-  // this.activatedRoute.queryParamMap.subscribe(params => {
-  //   console.log(params.get("sortOrder"))
-  // })
+    this.product$ = this.activatedRoute.data.pipe(
+      switchMap(data => of(data['product']))
+    )
 }
 
 ngOnChanges(changes: SimpleChanges): void {
-  const product = changes['product'];
   this.product$ = this.productService.getProduct(this.id);
   }
 
