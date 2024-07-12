@@ -11,3 +11,7 @@ h2 {
   color: white;
   margin-left: 5px; 
 }
+
+form {
+  display: inline;
+}

@@ -4,8 +4,12 @@
     <h2>Product Details</h2>
     <h3>{{product.name}}</h3>
     <span>{{product.price | currency:'EUR'}}</span>
-    <input placeholder="New price" #price/>
-    <button (click)="changePrice(product, price.valueAsNumber)">Change</button>
+
+    <form (ngSubmit)="changePrice(product, product.price)">
+      <input placeholder="New price" name="price" [(ngModel)]="product.price" />
+      <button type="submit">Change</button>
+    </form>
+
     <p>
       <button *ngIf="authService.isLoggedIn" (click)="buy()">Buy Now</button>
       <button class="delete" (click)="removeProduct(product)">Delete</button>
