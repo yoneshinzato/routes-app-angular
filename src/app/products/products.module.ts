@@ -8,7 +8,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductCreateComponent } from './product-create/product-create.component';
 import { ProductsRoutingModule } from './products-routing.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -26,6 +26,8 @@ import { FormsModule } from '@angular/forms';
     HttpClientModule,
     ProductsRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+    
 
   ],
   exports: [
