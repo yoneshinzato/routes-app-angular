@@ -1,32 +1,22 @@
-
-
 <form [formGroup]="productForm" (ngSubmit)="createProduct()">
   <div>
     <label for="name">Name</label>
     <input id="name" formControlName="name" required />
-  </div>
+    <span *ngIf="name.touched && name.invalid">
+      The name is not valid
+    </span>
+  </div> 
   <div>
     <label for="price">Price</label>
     <input id="price" formControlName="price" required />
-  </div>
-
-</form>
-
-<form formGroupName="info">
-  <h2>Product information</h2>
-  <div>
-    <label for="category">Category</label>
-    <input id="category" formControlName="category" />
+    <span *ngIf="price.touched && price.hasError('required')">
+        The price is required
+    </span>
+    <span *ngIf="price.touched && price.hasError('min')">
+        The price should be greater than 1
+    </span>
   </div>
   <div>
-    <label for="descr">Description</label>
-    <input id="descr" formControlName="description" />
-  </div>
-  <div>
-    <label for="photo">Photo URL</label>
-    <input id="photo" formControlName="image" />
-  </div>
-  <div>
-    <button type="submit">Create</button>
+    <button type="submit" [disabled]="!productForm.valid">Create</button>
   </div>
 </form>
