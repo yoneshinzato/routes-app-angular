@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: 'about',
-    loadComponent: () => import('./about/about-info/about-info.component').then(m => m.AboutInfoComponent),
+    loadChildren: () => import('./about/about.module').then(m => m.AboutModule),
   },
   { path: '**', component: PageNotFoundComponent }
 ];

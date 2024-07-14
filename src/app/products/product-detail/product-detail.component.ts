@@ -4,6 +4,7 @@ import { Observable, switchMap, of } from 'rxjs';
 import { ProductsService } from '../products.service';
 import { AuthService } from '../../auth/auth.service';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../../cart/cart.service';
 
 
 @Component({
@@ -22,7 +23,12 @@ export class ProductDetailComponent implements OnInit, OnChanges {
   product$: Observable<Product> | undefined;
   @Output() deleted = new EventEmitter();
 
-  constructor(private productService: ProductsService, public authService: AuthService, private activatedRoute: ActivatedRoute,) {
+  constructor(
+    private productService: ProductsService, 
+    public authService: AuthService, 
+    private activatedRoute: ActivatedRoute,
+    private cartService: CartService,
+  ) {
     console.log(`Name is ${this.name} in the constructor`);
   }
 
@@ -36,8 +42,8 @@ ngOnChanges(changes: SimpleChanges): void {
   this.product$ = this.productService.getProduct(this.id);
   }
 
-  buy() {
-    this.bought.emit(this.name);
+  buy(product: Product) {
+    this.cartService.addProduct(product);
   }
 
   get productName(): string {

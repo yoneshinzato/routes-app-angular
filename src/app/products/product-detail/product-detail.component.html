@@ -11,7 +11,7 @@
     </form>
 
     <p>
-      <button *ngIf="authService.isLoggedIn" (click)="buy()">Buy Now</button>
+      <button *ngIf="authService.isLoggedIn" (click)="buy(product)">Buy Now</button>
       <button class="delete" (click)="removeProduct(product)">Delete</button>
     </p>
   </div>

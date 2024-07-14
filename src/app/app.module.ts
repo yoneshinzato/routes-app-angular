@@ -7,11 +7,15 @@ import { ProductsModule } from './products/products.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthModule } from './auth/auth.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageNotFoundComponent
+    CartComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -19,6 +23,8 @@ import { AuthModule } from './auth/auth.module';
     AppRoutingModule,
     HttpClientModule,
     AuthModule,
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
