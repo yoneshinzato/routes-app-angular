@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { EventEmitter, Output } from '@angular/core';
 import { ProductsService } from '../products.service';
 import { Product } from '../../product';
@@ -13,12 +13,20 @@ import { priceRangeValidators } from '../price-range.directive';
   templateUrl: `./product-create.component.html`,
   styleUrl: './product-create.component.css',
 })
-export class ProductCreateComponent { 
+export class ProductCreateComponent implements OnInit { 
   @Output() added = new EventEmitter<Product>();
-
+  showPriceRangeHint = false;
   
 
   constructor(private productService: ProductsService, public authService: AuthService, private formBuilder: FormBuilder) { }
+
+  ngOnInit(): void {
+      this.price.valueChanges.subscribe(price => {
+        if(price) {
+          this.showPriceRangeHint = price > 1 && price < 10000
+        }
+      })
+  }
 
   productForm = new FormGroup({
     name: new FormControl('', {
