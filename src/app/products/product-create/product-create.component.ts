@@ -17,14 +17,13 @@ export class ProductCreateComponent implements OnInit {
   @Output() added = new EventEmitter<Product>();
   showPriceRangeHint = false;
   
+  products: Product[] = [];
 
   constructor(private productService: ProductsService, public authService: AuthService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-      this.price.valueChanges.subscribe(price => {
-        if(price) {
-          this.showPriceRangeHint = price > 1 && price < 10000
-        }
+      this.productService.getProducts().subscribe(products => {
+        this.products = products
       })
   }
 
