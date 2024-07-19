@@ -10,6 +10,11 @@ import { AuthModule } from './auth/auth.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CartComponent } from './cart/cart.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
@@ -19,14 +24,20 @@ import { CartComponent } from './cart/cart.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     ProductsModule,
     AppRoutingModule,
     HttpClientModule,
     AuthModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatButtonToggleModule,
   ],
-  providers: [],
+  providers: [
+    provideAnimationsAsync()
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
