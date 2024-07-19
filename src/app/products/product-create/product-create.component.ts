@@ -6,7 +6,7 @@ import { Product } from '../../product';
 import { AuthService } from '../../auth/auth.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { priceRangeValidators } from '../price-range.directive';
-
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-create',
@@ -16,12 +16,16 @@ import { priceRangeValidators } from '../price-range.directive';
 export class ProductCreateComponent implements OnInit { 
   @Output() added = new EventEmitter<Product>();
   showPriceRangeHint = false;
-  
   products: Product[] = [];
+  products$: Observable<Product[]> | undefined;
 
   constructor(private productService: ProductsService, public authService: AuthService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.products$ = this.name.valueChanges.pipe(
+      map(name => this.products.filter(product => product.name.startsWith(name)))
+    )
+    
       this.productService.getProducts().subscribe(products => {
         this.products = products
       })
