@@ -19,13 +19,16 @@ export class ProductCreateComponent implements OnInit {
   products: Product[] = [];
   products$: Observable<Product[]> | undefined;
 
+
+  categories = ['Hardware', 'Computers', 'Clothing', 'Software'];
+
   constructor(private productService: ProductsService, public authService: AuthService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
     this.products$ = this.name.valueChanges.pipe(
       map(name => this.products.filter(product => product.name.startsWith(name)))
     )
-    
+
       this.productService.getProducts().subscribe(products => {
         this.products = products
       })
