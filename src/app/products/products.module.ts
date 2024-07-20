@@ -18,13 +18,16 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PriceComponent } from './price/price.component';
 
 @NgModule({
   declarations: [
     ProductListComponent,
     ProductDetailComponent,
     ProductViewComponent,
-    ProductCreateComponent
+    ProductCreateComponent,
+    PriceComponent
   ],
   imports: [
     CommonModule,
@@ -43,6 +46,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     MatNativeDateModule,
     MatListModule,
     MatGridListModule,
+    MatDialogModule,
+    
 
   ],
   exports: [

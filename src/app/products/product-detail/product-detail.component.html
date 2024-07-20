@@ -4,11 +4,7 @@
     <h2>Product Details</h2>
     <h3>{{product.name}}</h3>
     <span>{{product.price | currency:'EUR'}}</span>
-
-    <form (ngSubmit)="changePrice(product, product.price)">
-      <input placeholder="New price" name="price" [(ngModel)]="product.price" />
-      <button type="submit">Change</button>
-    </form>
+    <button mat-raised-button color="primary" (click)="changePrice(product)">Change</button>
 
     <p>
       <button *ngIf="authService.isLoggedIn" (click)="buy(product)">Buy Now</button>
