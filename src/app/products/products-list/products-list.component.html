@@ -1,11 +1,20 @@
 <h2>Product List</h2> 
-<ul>
+<!-- <ul>
   <li *ngFor="let product of products">
     <a [routerLink]="['./', product.id]">
       {{product.name}}
     </a>
   </li>
-</ul> 
-
+</ul>  -->
+<!-- <mat-selection-list>
+  <mat-list-option *ngFor="let product of products">
+      {{product.name}}
+  </mat-list-option>
+</mat-selection-list> -->
+<mat-grid-list cols="3" rowHeight="100px" gutterSize="50">
+  <mat-grid-tile *ngFor="let product of products">
+    {{product.name}}
+  </mat-grid-tile>
+</mat-grid-list>
 
 <app-product-create (added)="onAdd($event)"></app-product-create>
