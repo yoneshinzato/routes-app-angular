@@ -20,6 +20,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PriceComponent } from './price/price.component';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import { PriceComponent } from './price/price.component';
     MatListModule,
     MatGridListModule,
     MatDialogModule,
-    
+    MatTableModule,
 
   ],
   exports: [

@@ -12,6 +12,7 @@ export class ProductListComponent implements OnInit {
 
   selectedProduct: Product | undefined;
   products: Product[] = [];
+  columnNames = ['name', 'price'];
 
   constructor(private productService: ProductsService) {}
 

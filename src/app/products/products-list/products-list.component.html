@@ -1,20 +1,20 @@
-<h2>Product List</h2> 
-<ul>
-  <li *ngFor="let product of products">
-    <a [routerLink]="['./', product.id]">
-      {{product.name}}
-    </a>
-  </li>
-</ul> 
-<!-- <mat-selection-list>
-  <mat-list-option *ngFor="let product of products">
-      {{product.name}}
-  </mat-list-option>
-</mat-selection-list> -->
-<!-- <mat-grid-list cols="3" rowHeight="100px" gutterSize="50">
-  <mat-grid-tile *ngFor="let product of products">
-    {{product.name}}
-  </mat-grid-tile>
-</mat-grid-list> -->
+<h2>Product List</h2>
 
+<table mat-table [dataSource]="products">
+
+  <tr mat-header-row *matHeaderRowDef="columnNames"></tr> 
+  <tr mat-row *matRowDef="let row; columns: columnNames;"></tr>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let product">
+      <a [routerLink]="['/products', product.id]">{{product.name}}</a>
+    </td>
+    </ng-container> 
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <td mat-cell *matCellDef="let product">{{product.price | currency}}</td>
+  </ng-container>
+</table>
 <app-product-create (added)="onAdd($event)"></app-product-create>
+
